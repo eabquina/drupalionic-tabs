@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
+import {Http, Headers} from '@angular/http';
 
 /*
   Generated class for the BlogData provider.
@@ -10,6 +11,7 @@ import { ReplaySubject } from 'rxjs';
 @Injectable()
 export class Data {
   posts: ReplaySubject<{}> = new ReplaySubject<{}>()
+  http: Http
   constructor() {
     
   }
@@ -17,6 +19,10 @@ export class Data {
     return this.posts;
   }
   
+  getArticles() {
+    return this.http.get('http://dev-drupal8-ionic.pantheonsite.io/blog-roll/rest-export');
+  }
+
   addPost(post) {
     this.posts.next(post)
   }

@@ -7,26 +7,17 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list>
-  
-    <ion-item>
-      <ion-icon name="document" item-left></ion-icon>
-      Blog Post 
-    </ion-item>
 
-    <ion-item>
-      <ion-label floating>Title</ion-label>
-      <ion-input type="text" [(ngModel)]="post.title"></ion-input>
-    </ion-item>
+<button ion-button (click)="createBlog()">Create Blog</button>
 
-    <ion-item>
-      <ion-label floating>Body</ion-label>
-      <ion-textarea [(ngModel)]="post.body"></ion-textarea>
-    </ion-item>
-
-    <ion-item>
-      <button ion-button full (click)="post_data()">Post Article</button>
-    </ion-item>
-      
-  </ion-list>
+ <ion-card *ngFor="let card of posts">
+   <ion-card-content>
+     <ion-card-title>
+       {{card.title}}
+     </ion-card-title>
+     <p>
+       {{card.body}}
+     </p>
+     </ion-card-content>
+  </ion-card>
 </ion-content>

@@ -1,15 +1,19 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { Data } from '../../providers/data';
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-  posts: any = []
-  constructor(public navCtrl: NavController, public _data: Data) {
-    this._data.Posts.subscribe((post) => { this.posts.push(post)})
+  posts: any
+  constructor(public navCtrl: NavController, public http: Http) {
+    this.posts = null;
+    this.http.get('dev-drupal8-ionic.pantheonsite.io/blog-roll/rest-export').map(res => res.json()).subscribe(data => {
+      this.posts = data.data.children;
+        console.log(this.posts);
+    });
   }
-
 }

@@ -5,18 +5,6 @@
 </ion-header>
 
 <ion-content padding>
- <ion-card *ngFor="let card of posts">
-   <ion-card-content>
-     <ion-card-title>
-       {{card.title}}
-     </ion-card-title>
-     <p>
-       {{card.body}}
-     </p>
-     </ion-card-content>
-  </ion-card>
-
-  <!-- Get Drupal Home Page
   <h2>Welcome to Drupal + Ionic!</h2>
   <p>
     This starter project comes with simple tabs-based layout for apps
@@ -25,6 +13,20 @@
   <p>
     Take a look at the <code>src/pages/</code> directory to add or change tabs,
     update any existing page or create new pages.
-  </p> -->
+  </p>
+
+  <ion-card *ngFor="let post of posts">
+       <ion-card-content>
+     <ion-card-title>
+       {{post.title.value}}
+     </ion-card-title>
+     <p>
+       {{post.body.summary}}
+     </p>
+     </ion-card-content>
+   <ion-card-content>
+      <img [src]="post.data.field_image.url" />
+     </ion-card-content>
+  </ion-card>
 
 </ion-content>
